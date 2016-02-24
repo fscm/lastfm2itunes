@@ -118,10 +118,10 @@ def update_itunes(playcounts):
         bar.next()
     bar.finish()
     ## print results
-    artists_miss = reduce(lambda x,y: x+y, results['artists']['miss'].values())
-    tracks_miss = reduce(lambda x,y: x+y, map(lambda x: reduce(lambda x,y: x+y, x.values()), results['tracks']['miss'].values()))
-    tracks_updated = reduce(lambda x,y: x+y, map(lambda x: len(x.keys()), results['tracks']['updated'].values()))
-    tracks_not_updated = reduce(lambda x,y: x+y, map(lambda x: len(x.keys()), results['tracks']['not_updated'].values()))
+    artists_miss = reduce(lambda x,y: x+y, results['artists']['miss'].values() or [0])
+    tracks_miss = reduce(lambda x,y: x+y, map(lambda x: reduce(lambda x,y: x+y, x.values()), results['tracks']['miss'].values()) or [0])
+    tracks_updated = reduce(lambda x,y: x+y, map(lambda x: len(x.keys()), results['tracks']['updated'].values()) or [0])
+    tracks_not_updated = reduce(lambda x,y: x+y, map(lambda x: len(x.keys()), results['tracks']['not_updated'].values()) or [0])
     print "%i band misses" % artists_miss
     print "%i song misses" % tracks_miss
     print "%i songs updated" % tracks_updated

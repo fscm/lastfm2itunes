@@ -147,10 +147,10 @@ def update_itunes(playcounts)
     bar.increment!
   end
   ## puts results
-  artists_miss = results['artists']['miss'].values.reduce(:+)
-  tracks_miss = results['tracks']['miss'].values.map{ |b| b.values.reduce(:+) }.reduce(:+)
-  tracks_updated = results['tracks']['updated'].values.map { |b| b.values.length }.reduce(:+)
-  tracks_not_updated = results['tracks']['not_updated'].values.map { |b| b.values.length }.reduce(:+)
+  artists_miss = results['artists']['miss'].values.reduce(:+) || 0
+  tracks_miss = results['tracks']['miss'].values.map{ |b| b.values.reduce(:+) }.reduce(:+) || 0
+  tracks_updated = results['tracks']['updated'].values.map { |b| b.values.length }.reduce(:+) || 0
+  tracks_not_updated = results['tracks']['not_updated'].values.map { |b| b.values.length }.reduce(:+) || 0
   puts "%i band misses" % artists_miss
   puts "%i song misses" % tracks_miss
   puts "%i songs updated" % tracks_updated
