@@ -43,6 +43,7 @@ I18n.enforce_available_locales = false
 
 $api_version = '2.0'
 $api_baseurl = "http://ws.audioscrobbler.com/%s/" % [$api_version]
+$api_limit = 100
 $data_file = 'lastfm2itunes.dat'
 
 
@@ -63,11 +64,11 @@ end
 def get_lastfm_playcounts(username, apikey)
   puts "Fetching data from last.fm..."
   playcounts = {}
-  xmldoc = Nokogiri::XML(open("#{$api_baseurl}?method=user.getTopTracks&user=#{username}&api_key=#{apikey}"), nil, 'UTF-8')
+  xmldoc = Nokogiri::XML(open("#{$api_baseurl}?method=user.getTopTracks&user=#{username}&api_key=#{apikey}&limit=#{$api_limit}&page=1"), nil, 'UTF-8')
   total_pages = xmldoc.xpath('/lfm/toptracks/@totalPages').text.to_i
   bar = ProgressBar.new(total_pages, :bar, :counter)
   for page in (1..total_pages)
-    xmldoc = Nokogiri::XML(open("#{$api_baseurl}?method=user.getTopTracks&user=#{username}&api_key=#{apikey}&page=#{page}"), nil, 'UTF-8')
+    xmldoc = Nokogiri::XML(open("#{$api_baseurl}?method=user.getTopTracks&user=#{username}&api_key=#{apikey}&limit=#{$api_limit}&page=#{page}"), nil, 'UTF-8')
     tracks = xmldoc.xpath('/lfm/toptracks/track')
     tracks.each do |track|
       playcount = track.xpath('playcount').text.to_i

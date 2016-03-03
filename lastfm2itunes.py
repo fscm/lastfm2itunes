@@ -26,6 +26,7 @@ from xml.dom import minidom
 
 api_version = "2.0"
 api_baseurl = "http://ws.audioscrobbler.com/%s/" % api_version
+api_limit = 100
 data_file = 'lastfm2itunes.dat'
 
 
@@ -36,13 +37,13 @@ def usage():
 def get_lastfm_playcounts(username, apikey):
     print "Fetching data from last.fm..."
     playcounts = {}
-    payload = {'method':'user.getTopTracks', 'user':username, 'api_key':apikey}
+    payload = {'method':'user.getTopTracks', 'user':username, 'api_key':apikey, 'limit':api_limit, 'page':1}
     r = requests.post(api_baseurl, data = payload)
     xmldoc = minidom.parseString(r.text.encode('utf-8'))
     total_pages = int(xmldoc.getElementsByTagName('toptracks')[0].attributes['totalPages'].value)
     bar = Bar('Fetching', max=total_pages)
     for page in range(total_pages):
-        payload = {'method':'user.getTopTracks', 'user':username, 'api_key':apikey, 'page':page}
+        payload = {'method':'user.getTopTracks', 'user':username, 'api_key':apikey, 'limit':api_limit, 'page':page}
         r = requests.post(api_baseurl, data = payload)
         xmldoc = minidom.parseString(r.text.encode('utf-8'))
         tracks = xmldoc.getElementsByTagName('track')
