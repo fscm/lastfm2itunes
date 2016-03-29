@@ -38,13 +38,14 @@ def get_lastfm_playcounts(username, apikey):
     print "Fetching data from last.fm..."
     playcounts = {}
     payload = {'method':'user.getTopTracks', 'user':username, 'api_key':apikey, 'limit':api_limit, 'page':1}
-    r = requests.post(api_baseurl, data = payload)
+    session = requests.session()
+    r = session.post(api_baseurl, data = payload)
     xmldoc = minidom.parseString(r.text.encode('utf-8'))
     total_pages = int(xmldoc.getElementsByTagName('toptracks')[0].attributes['totalPages'].value)
     bar = Bar('Fetching', max=total_pages)
     for page in range(total_pages):
         payload = {'method':'user.getTopTracks', 'user':username, 'api_key':apikey, 'limit':api_limit, 'page':page}
-        r = requests.post(api_baseurl, data = payload)
+        r = session.post(api_baseurl, data = payload)
         xmldoc = minidom.parseString(r.text.encode('utf-8'))
         tracks = xmldoc.getElementsByTagName('track')
         for track in tracks:
