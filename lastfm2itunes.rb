@@ -17,6 +17,7 @@
 # - open-uri
 # - progress_bar
 # - rb-appscript
+# - unidecoder
 #
 # == Usage
 #
@@ -37,7 +38,7 @@ require 'getoptlong'
 require 'nokogiri'                 rescue "This script depends on the Nokogiri gem. Please run '(sudo) gem install nokogiri'."
 require 'open-uri'
 require 'progress_bar'             rescue "This script depends on the progress_bar gem. Please run '(sudo) gem install progress_bar'."
-
+require 'unidecoder'               rescue "This script depends on the unidecoder gem. Please run '(sudo) gem install unidecoder'."
 
 I18n.enforce_available_locales = false
 
@@ -72,8 +73,8 @@ def get_lastfm_playcounts(username, apikey)
     tracks = xmldoc.xpath('/lfm/toptracks/track')
     tracks.each do |track|
       playcount = track.xpath('playcount').text.to_i
-      artist = track.xpath('artist/name').text.downcase.strip.parameterize
-      name = track.xpath('name').text.downcase.strip.parameterize
+      artist = track.xpath('artist/name').text.to_ascii.parameterize
+      name = track.xpath('name').text.to_ascii.parameterize
       ## puts "#{playcount} : #{artist} - #{name}"
       playcounts[artist] ||= {}
       playcounts[artist][name] ||= 0
@@ -115,8 +116,8 @@ def update_itunes(playcounts)
   bar = ProgressBar.new(tracks.length, :bar, :counter)
   tracks.each do |track|
     track_playcount = track.played_count.get.to_i
-    track_artist = track.artist.get.downcase.strip.parameterize
-    track_name = track.name.get.downcase.strip.parameterize
+    track_artist = track.artist.get.to_ascii.parameterize
+    track_name = track.name.get.to_ascii.parameterize
     ## puts "#{track_playcount} : #{track_artist} - #{track_name}"
     lastfm_artist = playcounts[track_artist]
     if lastfm_artist.nil?
@@ -207,4 +208,3 @@ if __FILE__==$0
     nil
   end
 end
-
