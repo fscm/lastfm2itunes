@@ -4,36 +4,34 @@ Update your iTunes "played counts" with your Last.fm scrobbles.
 
 ## Synopsis
 
-This script will try to update the "played count" value of your iTunes songs by 
-getting the number of scrobbles for those songs from Last.fm.
+This script will try to update the "played count" and the "played date" value
+of your iTunes songs by getting the number of scrobbles for those songs from
+a [http://last.fm/](last.fm) profile.
 
-Differences in song titles and the usage of special characters on song names 
+Differences in song titles and the usage of special characters on song names
 may prevent the script from recognising the songs properly.
 
-The script is available on both Ruby and Python. Both versions will perform the 
-same tasks however, due to the way that both languages deal with character 
-encoding, normalisation and parametrisation, the results may be different. 
+The script is available on both Ruby and Python. Both versions will perform the
+same tasks however, due to the way that both languages deal with character
+encoding, normalisation and parameterisation, the results may be different.
 Please use the one that produces the best results for your iTunes library.
-
-Data files produced by the scripts are not interchangeable despite both of the 
-scripts are using the respective marshal libraries.
 
 ## Getting Started
 
 There are a couple of things needed for either of the scripts to work.
 
-### Prerequisities
+### Prerequisites
 
 Follow the instructions for the version of the script that you wish to use.
 Last.fm instructions are required for both versions.
 
 #### Last.fm
 
-A last.fm user account is required (to obtain the scrobbles from). You can 
-create an account at [http://last.fm/join](http://www.last.fm/join) if you do 
+A last.fm user account is required (to obtain the scrobbles from). You can
+create an account at [http://last.fm/join](http://www.last.fm/join) if you do
 not have one already.
 
-A last.fm API account is also required. You can obtain an API key at 
+A last.fm API account is also required. You can obtain an API key at
 [http://last.fm/api](http://www.last.fm/api/account/create)
 
 
@@ -60,15 +58,14 @@ sudo gem install <gem_name>
 For the Python version of the script the following modules are required:
 
 * appscript
-* inflection
 * getopt
-* marshal
+* json
 * os.path
 * progress
 * requests
 * sys
 * time
-* xml
+* unidecode
 
 You can install modules with:
 
@@ -78,7 +75,7 @@ sudo pip install <module_name>
 
 ### Installation
 
-Nothing special to be done. Just download the version of the script that you 
+Nothing special to be done. Just download the version of the script that you
 wish to use.
 
 ### Usage
@@ -100,13 +97,15 @@ Options:
 #### Python
 
 ```
+Last.fm to iTunes script
 Usage:
-  lastfm2itunes.py -u <username> -k <apikey> [-f <filename>]
+  lastfm2itunes.py -u <username> -k <apikey> [-f <filename>] [-h] [-p]
 Options:
-  --help, -h                   show help
-  --apikey, -k <api_key>       last.fm api key
-  --username, -u <username>    last.fm username
-  --datafile, -f <filename>    datafile name (optional)
+  -f, --datafile <filename>  datafile name (optional)
+  -h, --help                 show help (optional)
+  -k, --apikey <api_key>     last.fm api key
+  -p, --lastplayed           update the last played date (optional)
+  -u, --username <username>  last.fm username
 ```
 
 ## Contributing
@@ -119,7 +118,7 @@ Options:
 
 ## Versioning
 
-This project uses [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/fscm/lastfm2itunes/tags). 
+This project uses [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/fscm/lastfm2itunes/tags).
 
 ## Authors
 
