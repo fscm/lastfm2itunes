@@ -200,7 +200,6 @@ def update_itunes(playcounts, lastplayed=False):
         bar.next()
     bar.finish()
     #print(results)
-    print results['tracks']['lastplayed_updated']
     artists_miss = reduce(lambda x,y: x+y, results['artists']['miss'].values() or [0])
     albums_miss = reduce(lambda x,y: x+y, results['albums']['miss'].values() or [0])
     tracks_miss = reduce(lambda x,y: x+y, map(lambda x: reduce(lambda x,y: x+y, x.values()), results['tracks']['miss'].values()) or [0])
@@ -245,9 +244,9 @@ def main(argv):
     if data:
         last_updated = data.get('last_updated', 0)
         playcounts = data.get('playcounts', {})
-    playcounts = get_lastfm_playcounts(username, apikey, playcounts, last_updated)
-    save_data(datafile, playcounts)
-    update_itunes(playcounts['playcounts'], lastplayed)
+    data = get_lastfm_playcounts(username, apikey, playcounts, last_updated)
+    save_data(datafile, data)
+    update_itunes(data['playcounts'], lastplayed)
 
 
 if __name__ == "__main__":

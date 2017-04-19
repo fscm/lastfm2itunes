@@ -97,7 +97,6 @@ Options:
 #### Python
 
 ```
-Last.fm to iTunes script
 Usage:
   lastfm2itunes.py -u <username> -k <apikey> [-f <filename>] [-h] [-p]
 Options:
