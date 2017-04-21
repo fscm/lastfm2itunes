@@ -140,9 +140,9 @@ def update_itunes(playcounts, lastplayed=False):
         track_album = unidecode(track.album()).encode('ascii').lower()
         track_name = unidecode(track.name()).encode('ascii').lower()
         try:
-            track_lastplayed = int((track.played_date() - DATE_EPOCH).total_seconds() + (altzone if daylight else timezone))
+            track_last_played = int((track.played_date() - DATE_EPOCH).total_seconds() + (altzone if daylight else timezone))
         except:
-            track_lastplayed = 0
+            track_last_played = 0
         lastfm_artist = playcounts.get(track_artist, None)
         if not lastfm_artist:
             # artist not yet in last.fm
@@ -179,17 +179,17 @@ def update_itunes(playcounts, lastplayed=False):
                 track_name, {'from':track_playcount, 'to':lastfm_playcount} )
         lastfm_lastplayed = int(lastfm_track['last_played'])
         if lastplayed:
-            if lastfm_lastplayed > track_lastplayed:
+            if lastfm_lastplayed > track_last_played:
                 # count updated
                 results['tracks']['lastplayed_updated'].setdefault(track_artist, {})
                 results['tracks']['lastplayed_updated'][track_artist].setdefault(
-                    track_name, {'from':track_lastplayed, 'to':lastfm_lastplayed} )
+                    track_name, {'from':track_last_played, 'to':lastfm_lastplayed} )
                 track.played_date.set(datetime.fromtimestamp(lastfm_lastplayed - (altzone if daylight else timezone)))
             else:
                 # count not updated
                 results['tracks']['lastplayed_not_updated'].setdefault(track_artist, {})
                 results['tracks']['lastplayed_not_updated'][track_artist].setdefault(
-                    track_name, {'from':track_lastplayed, 'to':lastfm_lastplayed} )
+                    track_name, {'from':track_last_played, 'to':lastfm_lastplayed} )
         #print("{0}: {1} - {2} - {3} ({4}->{5})".format(
         #    track_last_played,
         #    track_artist.encode('utf-8'),
