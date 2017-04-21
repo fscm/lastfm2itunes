@@ -39,9 +39,8 @@ A last.fm API account is also required. You can obtain an API key at
 
 For the Ruby version of the script the following gems are required:
 
-* activesupport
 * getoptlong
-* nokogiri
+* json
 * open-uri
 * progress_bar
 * rb-appscript
@@ -86,12 +85,13 @@ Both versions of the script use the same arguments.
 
 ```
 Usage:
-  ruby lastfm2itunes.rb -u <username> -k <apikey> [-f <filename>]
+  lastfm2itunes.rb -u <username> -k <apikey> [-f <filename>] [-h] [-p]
 Options:
-  -h, --help       show help
-  -k, --apikey     last.fm api key
-  -u, --username   last.fm username
-  -f, --datafile   datafile name (optional)
+  -f, --datafile <filename>  datafile name (optional)
+  -h, --help                 show help (optional)
+  -k, --apikey <api_key>     last.fm api key
+  -p, --lastplayed           update the last played date (optional)
+  -u, --username <username>  last.fm username
 ```
 
 #### Python
@@ -117,14 +117,17 @@ Options:
 
 ## Versioning
 
-This project uses [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/fscm/lastfm2itunes/tags).
+This project uses [SemVer](http://semver.org/) for versioning. For the versions
+available, see the [tags on this repository](https://github.com/fscm/lastfm2itunes/tags).
 
 ## Authors
 
 * **Frederico Martins** - [fscm](https://github.com/fscm)
 
-See also the list of [contributors](https://github.com/fscm/lastfm2itunes/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/fscm/lastfm2itunes/contributors)
+who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE)
+file for details
