@@ -222,7 +222,7 @@ def main(argv):
     playcounts = {}
     lastplayed = False
     try:
-        opts, args = getopt.getopt(argv, "hu:k:f:p", ["help", "username=", "apikey=", "file=", "lastplayed"])
+        opts, args = getopt.getopt(argv, "hu:k:f:p", ["help", "username=", "apikey=", "datafile=", "lastplayed"])
     except getopt.GetoptError as err:
         sys.exit("  " + str(err))
     if not opts:
@@ -234,7 +234,7 @@ def main(argv):
             username = arg
         elif opt in ('-k', '--apikey'):
             apikey = arg
-        elif opt in ('-f', '--file'):
+        elif opt in ('-f', '--datafile'):
             datafile = arg
         elif opt in ('-p', '--lastplayed'):
             lastplayed = True
