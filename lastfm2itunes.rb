@@ -11,12 +11,13 @@
 #
 # == Requires
 #
-# - activesupport
 # - getoptlong
-# - nokogiri
-# - open-uri
+# - json
+# - net/http
 # - progress_bar
 # - rb-appscript
+# - time
+# - uri
 # - unidecoder
 #
 # == Usage
