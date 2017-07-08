@@ -9,11 +9,11 @@ of your iTunes songs by getting the number of scrobbles for those songs from
 a [http://last.fm/](last.fm) profile.
 
 Differences in song titles and the usage of special characters on song names
-may prevent the script from recognising the songs properly.
+may prevent the script from recognizing the songs properly.
 
 The script is available on both Ruby and Python. Both versions will perform the
 same tasks however, due to the way that both languages deal with character
-encoding, normalisation and parameterisation, the results may be different.
+encoding, normalization and parameterization, the results may be different.
 Please use the one that produces the best results for your iTunes library.
 
 ## Getting Started
