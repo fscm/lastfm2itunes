@@ -1,4 +1,6 @@
 # lastfm2itunes
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffscm%2Flastfm2itunes.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ffscm%2Flastfm2itunes?ref=badge_shield)
+
 
 Update your iTunes "played counts" with your Last.fm scrobbles.
 
@@ -134,3 +136,6 @@ who participated in this project.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE)
 file for details
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffscm%2Flastfm2itunes.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ffscm%2Flastfm2itunes?ref=badge_large)
