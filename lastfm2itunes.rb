@@ -4,7 +4,7 @@
 # coding: UTF-8
 # encoding: utf-8
 #
-# copyright: 2016-2020, Frederico Martins
+# copyright: 2016-2021, Frederico Martins
 # author: Frederico Martins <http://github.com/fscm>
 # license: SPDX-License-Identifier: MIT
 #
